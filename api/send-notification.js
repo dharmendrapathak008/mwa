@@ -1,4 +1,4 @@
-import webpush from 'web-push';
+const webpush = require('web-push');
 
 const VAPID_PUBLIC_KEY = 'BGLl57u4N2WGsSPjuxNRrKohFf68iznS3PsmU3OZYXn-6WJlSNaMCvli5tGAIVZsgfNt8H0vjueU2NZ__ka3CjE';
 const VAPID_PRIVATE_KEY = 'EYGujmoPJkhJFjKOA-LhfLf-G15rvWUxH4WpXyh1awM';
@@ -11,7 +11,7 @@ webpush.setVapidDetails(
 
 let savedSubscription = null;
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   if (req.method === 'POST') {
     const { subscription, title, body, url } = req.body;
 
