@@ -24,3 +24,27 @@
     return Uint8Array.from([...rawData].map(char => char.charCodeAt(0)));
   }
 
+
+
+  let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  const installBtn = document.createElement('button');
+  installBtn.textContent = 'Install App';
+  installBtn.style.padding = '1em';
+  installBtn.onclick = () => {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(choice => {
+      if (choice.outcome === 'accepted') {
+        console.log('User accepted install prompt');
+      }
+    });
+  };
+
+  document.body.appendChild(installBtn);
+});
+
+
