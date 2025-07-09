@@ -9,11 +9,12 @@
         applicationServerKey: urlBase64ToUint8Array("BGLl57u4N2WGsSPjuxNRrKohFf68iznS3PsmU3OZYXn-6WJlSNaMCvli5tGAIVZsgfNt8H0vjueU2NZ__ka3CjE")
       });
 
-      await fetch('/api/save-subscription', {
+      await fetch('/api/send-notification', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(subscription)
+        body: JSON.stringify({ subscription }) // wrap in object
       });
+
     });
   }
 
